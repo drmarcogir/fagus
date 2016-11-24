@@ -10,7 +10,10 @@ dat<-read.csv("/mnt/data1tb/Dropbox/Fagus/dataJuly16/newdata.csv")
 # standardize variables
 source("/mnt/data1tb/Dropbox/Fagus/scripts/dataprepare.R")
 
-#----Intercorrelation among predictors
+###################################
+#Intercorrelation among predictors
+###################################
+
 # Rpool dataset
 envdf<-dat[,c("PLOT","ATEMP","APREC","SPREC","PH","LGMS","DIST","TOPO","Rpool1","L","M","R","N","T")]
 # compute spearman's correlation coefficient for all pairwise complete obervations
@@ -31,8 +34,11 @@ corrplot(cordata, method = "pie")
 dev.off()
 
 
+################################
+# Any outliers in response and
+# and predictors?
+################################
 
-#---- Any outliers in response predictors?
 pred.l<-c("PLOT","ATEMP","APREC","SPREC","PH","LGMS","DIST","TOPO","Gpool1","L","M","R","N","T","Rpool1","Rpool2","Gpool2")
 
 for (i in 1:length(pred.l)){
