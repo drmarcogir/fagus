@@ -42,10 +42,7 @@ WriteXLS(results1,ExcelFileName="/mnt/data1tb/Dropbox/Fagus/resultsJuly16/BRT.xl
 ###################
 # SEM models
 ###################
-
-# aspatial models (as lists 
-# required by piecewiseSEM package)
-
+# aspatial models (as lists required by piecewiseSEM package)
 semmods<-fitsem_wrapper()
 
 # bootstrap confidence intervals
