@@ -14,7 +14,6 @@ file.sources<-list.files("/mnt/data1tb/Dropbox/Fagus/scripts/fagus/marcosfunctio
 for (f in 1:length(file.sources)) {
   source(paste("/mnt/data1tb/Dropbox/Fagus/scripts/fagus/marcosfunctions/",file.sources[f],sep=""))
 }
-
 # read in data
 dat<-read.csv("/mnt/data1tb/Dropbox/Fagus/dataJuly16/newdata.csv")
 # standardize variables
