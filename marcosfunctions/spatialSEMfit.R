@@ -1,5 +1,5 @@
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-# Fit aspatial SEM models as 
+# Fit spatial SEM models as 
 # separate regressions 
 # Script created by Marco Girardello
 # 14/09/2016 
