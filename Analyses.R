@@ -47,17 +47,17 @@ WriteXLS(results1,ExcelFileName="/mnt/data1tb/Dropbox/Fagus/resultsJuly16/BRT.xl
 semmods<-fitsem_wrapper()
 
 # bootstrap confidence intervals
-sr1nopoolci<-getci(modlist=sr1nopool,indat=dat.rpool1)
-sr1poolci<-getci(modlist=sr1pool,indat=dat.rpool1)
+sr1nopoolci<-getci(modlist=semmods[[1]],indat=dat.rpool1)
+sr1poolci<-getci(modlist=semmods[[2]],indat=dat.rpool1)
 
-sr2nopoolci<-getci(modlist=sr2nopool,indat=dat.rpool2)
-sr2poolci<-getci(modlist=sr2pool,indat=dat.rpool2)
+sr2nopoolci<-getci(modlist=semmods[[3]],indat=dat.rpool2)
+sr2poolci<-getci(modlist=semmods[[4]],indat=dat.rpool2)
 
-g1nopoolci<-getci(modlist=g1nopool,indat=dat.gpool1)
-g1poolci<-getci(modlist=g1pool,indat=dat.gpool1)
+g1nopoolci<-getci(modlist=semmods[[5]],indat=dat.gpool1)
+g1poolci<-getci(modlist=semmods[[6]],indat=dat.gpool1)
 
-g2nopoolci<-getci(modlist=g2nopool,indat=dat.gpool2)
-g2poolci<-getci(modlist=g2pool,indat=dat.gpool2)
+g2nopoolci<-getci(modlist=semmods[[7]],indat=dat.gpool2)
+g2poolci<-getci(modlist=semmods[[8]],indat=dat.gpool2)
 
 
 # standardized path coefficients
