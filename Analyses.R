@@ -39,11 +39,8 @@ predresp<-list(c("SR1","PLOT","ATEMP","APREC","SPREC","PH","LGMS","DIST","TOPO",
 
 
 brtresults<-fitbrt_wrapper(inputdat=dat1,modlist=predresp)
-
-
 # write output results
 WriteXLS(results1,ExcelFileName="/mnt/data1tb/Dropbox/Fagus/resultsJuly16/BRT.xlsx",row.names=FALSE,col.names=TRUE,BoldHeaderRow = TRUE)
-
 
 ###################
 # SEM models
