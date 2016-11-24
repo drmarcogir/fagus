@@ -11,7 +11,6 @@ dat<-read.csv("/mnt/data1tb/Dropbox/Fagus/dataJuly16/newdata.csv")
 source("/mnt/data1tb/Dropbox/Fagus/scripts/dataprepare.R")
 
 #----Intercorrelation among predictors
-
 # Rpool dataset
 envdf<-dat[,c("PLOT","ATEMP","APREC","SPREC","PH","LGMS","DIST","TOPO","Rpool1","L","M","R","N","T")]
 # compute spearman's correlation coefficient for all pairwise complete obervations
