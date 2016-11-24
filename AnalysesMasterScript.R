@@ -20,11 +20,45 @@ source("/mnt/data1tb/Dropbox/Fagus/scripts/dataprepare.R")
 
 # fit sem models
 
+###################
+# BRT models
+###################
 
-# fit BRT models
+# list of models 
+predresp<-list(c("SR1","PLOT","ATEMP","APREC","SPREC","PH","LGMS","DIST","TOPO","Rpool1"),
+               c("SR1","PLOT","ATEMP","APREC","SPREC","PH","LGMS","DIST","TOPO","Gpool1"),
+               c("SR1","PLOT","ATEMP","APREC","SPREC","PH","LGMS","DIST","TOPO"),
+               c("SR1","PLOT","ATEMP","APREC","SPREC","PH","LGMS","DIST","TOPO","Rpool1","L","M","R","N","T"),
+               c("SR1","PLOT","ATEMP","APREC","SPREC","PH","LGMS","DIST","TOPO","Gpool1","L","M","R","N","T"),
+               c("SR1","PLOT","ATEMP","APREC","SPREC","PH","LGMS","DIST","TOPO","L","M","R","N","T"),
+               c("SR2","PLOT","ATEMP","APREC","SPREC","PH","LGMS","DIST","TOPO","Rpool2"),
+               c("SR2","PLOT","ATEMP","APREC","SPREC","PH","LGMS","DIST","TOPO","Gpool2"),
+               c("SR2","PLOT","ATEMP","APREC","SPREC","PH","LGMS","DIST","TOPO"),
+               c("SR2","PLOT","ATEMP","APREC","SPREC","PH","LGMS","DIST","TOPO","Rpool2","L","M","R","N","T"),
+               c("SR2","PLOT","ATEMP","APREC","SPREC","PH","LGMS","DIST","TOPO","Gpool2","L","M","R","N","T"),
+               c("SR2","PLOT","ATEMP","APREC","SPREC","PH","LGMS","DIST","TOPO","L","M","R","N","T"))
 
 
-# output for BRT models
+brtresults<-fitbrt_wrapper(inputdat=dat1,modlist=predresp)
+
+
+# write output results
+WriteXLS(results1,ExcelFileName="/mnt/data1tb/Dropbox/Fagus/resultsJuly16/BRT.xlsx",row.names=FALSE,col.names=TRUE,BoldHeaderRow = TRUE)
+
+
+###################
+# SEM models
+###################
+
+fitsem_wrapper()
+
+
+
+###################
+# SEM with spatial
+# aucorrelation
+###################
+
 
 
 # output for SEM models 
