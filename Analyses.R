@@ -10,8 +10,8 @@ library(stringi);library(nlme);library(MASS)
 library(stringr);library(boot);library(dismo)
 
 # source required functions
-file.sources<-list.files("/mnt/data1tb/Dropbox/Fagus/scripts/fagus/marcosfunctions",pattern="*.R")
-for (f in 1:length(file.sources)) {source(paste("/mnt/data1tb/Dropbox/Fagus/scripts/fagus/marcosfunctions/",file.sources[f],sep=""))}
+marcofunctions<-list.files("/mnt/data1tb/Dropbox/Fagus/scripts/fagus/marcosfunctions",full.names=TRUE)
+for (f in 1:length(marcofunctions)) {source(marcofunctions[f])}
 # read in data
 dat<-read.csv("/mnt/data1tb/Dropbox/Fagus/dataJuly16/newdata.csv")
 # standardize variables
