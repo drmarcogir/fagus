@@ -11,14 +11,16 @@ library(stringr);library(boot);library(dismo)
 
 
 # source required functions
-source("/mnt/data1tb/Dropbox/Fagus/scripts/functions.R")
+file.sources<-list.files("/mnt/data1tb/Dropbox/Fagus/scripts/fagus/marcosfunctions",pattern="*.R")
+for (f in 1:length(file.sources)) {
+source(paste("/mnt/data1tb/Dropbox/Fagus/scripts/fagus/marcosfunctions/",f,sep=""))
+}
 
 # read in data
 dat<-read.csv("/mnt/data1tb/Dropbox/Fagus/dataJuly16/newdata.csv")
 # standardize variables
-source("/mnt/data1tb/Dropbox/Fagus/scripts/dataprepare.R")
+source("/mnt/data1tb/Dropbox/Fagus/scripts/fagus/Dataprepare.R")
 
-# fit sem models
 
 ###################
 # BRT models

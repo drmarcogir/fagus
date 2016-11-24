@@ -1,4 +1,8 @@
- 
+library(doMC)
+library(foreach)
+registerDoMC(cores = 2)
+library(MASS)
+
 
 fitgls1<- function(inputdf) {
 
