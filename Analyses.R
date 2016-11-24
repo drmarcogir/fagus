@@ -87,6 +87,9 @@ fitsem_spatial()
 # create correlogram plots
 
 # write outputs for SEMs
+sem.aic(modelList=semmods[[1]],dat=dat.gpool1)
+sem.aic(modelList=g1nopool,dat=dat.gpool1)
+sem.aic(modelList=g1nopool,dat=dat.gpool1)
 sem.aic(modelList=g1nopool,dat=dat.gpool1)
 
 
