@@ -64,8 +64,8 @@ g2poolci<-getci(modlist=semmods[[8]],indat=dat.gpool2)
 sr1nopool<-sem.coefs(modelList=semmods[[1]],dat=dat.rpool1,standardize="scale")
 sr1pool<-sem.coefs(modelList=semmods[[2]],dat=dat.rpool1,standardize="scale")
 
-sr2nopool<-sem.coefs(modelList=semmods[[2],dat=dat.rpool2,standardize="scale")
-sr2pool<-sem.coefs(modelList=semmods[[3]],dat=dat.rpool2,standardize="scale")
+sr2nopool<-sem.coefs(modelList=semmods[[3]],dat=dat.rpool2,standardize="scale")
+sr2pool<-sem.coefs(modelList=semmods[[4]],dat=dat.rpool2,standardize="scale")
 
 
 # aspatial models (individual regressions)
