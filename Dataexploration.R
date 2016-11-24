@@ -16,6 +16,7 @@ source("/mnt/data1tb/Dropbox/Fagus/scripts/dataprepare.R")
 
 # Rpool dataset
 envdf<-dat[,c("PLOT","ATEMP","APREC","SPREC","PH","LGMS","DIST","TOPO","Rpool1","L","M","R","N","T")]
+
 # compute spearman's correlation coefficient for all pairwise complete obervations
 cordata <- cor(envdf, use = "pairwise.complete.obs", method = "spearman")
 
@@ -26,6 +27,8 @@ dev.off()
 
 # Gpool dataset
 envdf1<-dat[,c("PLOT","ATEMP","APREC","SPREC","PH","LGMS","DIST","TOPO","Gpool1","L","M","R","N","T")]
+
+# compute spearman's correlation coefficient for all pairwise complete obervations
 cordata <- cor(envdf1, use = "pairwise.complete.obs", method = "spearman")
 
 # another pretty picture of intercorrelation
