@@ -9,20 +9,16 @@ library(lme4);library(pgirmess);library(vegan)
 library(stringi);library(nlme);library(MASS)
 library(stringr);library(boot);library(dismo)
 
-
 # source required functions
 file.sources<-list.files("/mnt/data1tb/Dropbox/Fagus/scripts/fagus/marcosfunctions",pattern="*.R")
-
 for (f in 1:length(file.sources)) {
   source(paste("/mnt/data1tb/Dropbox/Fagus/scripts/fagus/marcosfunctions/",file.sources[f],sep=""))
 }
-
 
 # read in data
 dat<-read.csv("/mnt/data1tb/Dropbox/Fagus/dataJuly16/newdata.csv")
 # standardize variables
 source("/mnt/data1tb/Dropbox/Fagus/scripts/fagus/Dataprepare.R")
-
 
 ###################
 # BRT models
