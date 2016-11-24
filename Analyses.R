@@ -20,6 +20,7 @@ source("/mnt/data1tb/Dropbox/Fagus/scripts/fagus/Dataprepare.R")
 ###################
 # BRT models
 ###################
+
 # list of models 
 predresp<-list(c("SR1","PLOT","ATEMP","APREC","SPREC","PH","LGMS","DIST","TOPO","Rpool1"),
                c("SR1","PLOT","ATEMP","APREC","SPREC","PH","LGMS","DIST","TOPO","Gpool1"),
