@@ -46,7 +46,7 @@ WriteXLS(results1,ExcelFileName="/mnt/data1tb/Dropbox/Fagus/resultsJuly16/BRT.xl
 # aspatial models (as lists 
 # required by piecewiseSEM package)
 
-fitsem_wrapper(inputdf,modeldes"=")
+semmods<-fitsem_wrapper()
 
 # bootstrap confidence intervals
 sr1nopoolci<-getci(modlist=sr1nopool,indat=dat.rpool1)
@@ -63,8 +63,8 @@ g2poolci<-getci(modlist=g2pool,indat=dat.gpool2)
 
 
 # standardized path coefficients
-sr1nopool.cf<-sem.coefs(modelList=sr1nopool,dat=dat.rpool1,standardize="scale")
-sr1pool.cf<-sem.coefs(modelList=sr1pool,dat=dat.rpool1,standardize="scale")
+sr1nopool<-sem.coefs(modelList=sr1nopool,dat=dat.rpool1,standardize="scale")
+sr1pool<-sem.coefs(modelList=sr1pool,dat=dat.rpool1,standardize="scale")
 
 
 
