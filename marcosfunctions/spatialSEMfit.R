@@ -1,7 +1,9 @@
-library(doMC)
-library(foreach)
-registerDoMC(cores = 2)
-library(MASS)
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+# Fit aspatial SEM models as 
+# separate regressions 
+# Script created by Marco Girardello
+# 14/09/2016 
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 
 fitsem_aspatial<-function(inputdf){    
