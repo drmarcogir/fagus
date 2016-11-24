@@ -38,7 +38,7 @@ dev.off()
 
 
 ################################
-# Any outliers in response and
+# Any outliers in the responses 
 # and predictors?
 ################################
 
