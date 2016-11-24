@@ -43,7 +43,8 @@ WriteXLS(results1,ExcelFileName="/mnt/data1tb/Dropbox/Fagus/resultsJuly16/BRT.xl
 # SEM models
 ###################
 
-# aspatial models (as lists required by piecewiseSEM package)
+# aspatial models (as lists. required by piecewiseSEM package)
+
 semmods<-fitsem_wrapper()
 
 # bootstrap confidence intervals
@@ -59,13 +60,18 @@ g1poolci<-getci(modlist=semmods[[6]],indat=dat.gpool1)
 g2nopoolci<-getci(modlist=semmods[[7]],indat=dat.gpool2)
 g2poolci<-getci(modlist=semmods[[8]],indat=dat.gpool2)
 
-
 # standardized path coefficients
 sr1nopool<-sem.coefs(modelList=semmods[[1]],dat=dat.rpool1,standardize="scale")
 sr1pool<-sem.coefs(modelList=semmods[[2]],dat=dat.rpool1,standardize="scale")
 
 sr2nopool<-sem.coefs(modelList=semmods[[3]],dat=dat.rpool2,standardize="scale")
 sr2pool<-sem.coefs(modelList=semmods[[4]],dat=dat.rpool2,standardize="scale")
+
+g1nopool<-sem.coefs(modelList=semmods[[5]],dat=dat.gpool1,standardize="scale")
+g1pool<-sem.coefs(modelList=semmods[[6]],dat=dat.gpool1,standardize="scale")
+
+g2nopool<-sem.coefs(modelList=semmods[[7]],dat=dat.gpool2,standardize="scale")
+g2pool<-sem.coefs(modelList=semmods[[8]],dat=dat.gpool2,standardize="scale")
 
 
 # aspatial models (individual regressions)
@@ -74,11 +80,11 @@ fitsem_aspatial()
 # spatial models (individual regressions) 
 fitsem_spatial()
 
-# compute correlograms
+# compute correlograms aspatial models
 
+# compute correlograms spatial models
 
 # create correlogram plots
-
 
 # write outputs for SEMs
 sem.aic(modelList=g1nopool,dat=dat.gpool1)
