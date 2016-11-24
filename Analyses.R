@@ -11,9 +11,7 @@ library(stringr);library(boot);library(dismo)
 
 # source required functions
 file.sources<-list.files("/mnt/data1tb/Dropbox/Fagus/scripts/fagus/marcosfunctions",pattern="*.R")
-for (f in 1:length(file.sources)) {
-  source(paste("/mnt/data1tb/Dropbox/Fagus/scripts/fagus/marcosfunctions/",file.sources[f],sep=""))
-}
+for (f in 1:length(file.sources)) {source(paste("/mnt/data1tb/Dropbox/Fagus/scripts/fagus/marcosfunctions/",file.sources[f],sep=""))}
 # read in data
 dat<-read.csv("/mnt/data1tb/Dropbox/Fagus/dataJuly16/newdata.csv")
 # standardize variables
