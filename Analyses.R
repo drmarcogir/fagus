@@ -61,9 +61,11 @@ g2poolci<-getci(modlist=semmods[[8]],indat=dat.gpool2)
 
 
 # standardized path coefficients
-sr1nopool<-sem.coefs(modelList=sr1nopool,dat=dat.rpool1,standardize="scale")
-sr1pool<-sem.coefs(modelList=sr1pool,dat=dat.rpool1,standardize="scale")
+sr1nopool<-sem.coefs(modelList=semmods[[1]],dat=dat.rpool1,standardize="scale")
+sr1pool<-sem.coefs(modelList=semmods[[2]],dat=dat.rpool1,standardize="scale")
 
+sr2nopool<-sem.coefs(modelList=semmods[[2],dat=dat.rpool2,standardize="scale")
+sr2pool<-sem.coefs(modelList=semmods[[3]],dat=dat.rpool2,standardize="scale")
 
 
 # aspatial models (individual regressions)
