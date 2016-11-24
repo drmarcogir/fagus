@@ -12,9 +12,11 @@ library(stringr);library(boot);library(dismo)
 
 # source required functions
 file.sources<-list.files("/mnt/data1tb/Dropbox/Fagus/scripts/fagus/marcosfunctions",pattern="*.R")
+
 for (f in 1:length(file.sources)) {
-source(paste("/mnt/data1tb/Dropbox/Fagus/scripts/fagus/marcosfunctions/",f,sep=""))
+  source(paste("/mnt/data1tb/Dropbox/Fagus/scripts/fagus/marcosfunctions/",file.sources[f],sep=""))
 }
+
 
 # read in data
 dat<-read.csv("/mnt/data1tb/Dropbox/Fagus/dataJuly16/newdata.csv")
@@ -52,8 +54,10 @@ WriteXLS(results1,ExcelFileName="/mnt/data1tb/Dropbox/Fagus/resultsJuly16/BRT.xl
 # SEM models
 ###################
 
-fitsem_wrapper()
+# aspatial models (as lists 
+# required by piecewiseSEM package)
 
+fitsem_wrapper(inputdf,modeldes"=")
 
 # bootstrap confidence intervals
 sr1nopoolci<-getci(modlist=sr1nopool,indat=dat.rpool1)
@@ -69,6 +73,44 @@ g2nopoolci<-getci(modlist=g2nopool,indat=dat.gpool2)
 g2poolci<-getci(modlist=g2pool,indat=dat.gpool2)
 
 
+# standardized path coefficients
+sr1nopool.cf<-sem.coefs(modelList=sr1nopool,dat=dat.rpool1,standardize="scale")
+sr1pool.cf<-sem.coefs(modelList=sr1pool,dat=dat.rpool1,standardize="scale")
+
+
+
+# aspatial models (individual regressions)
+fitsem_aspatial()
+
+# spatial models (individual regressions) 
+fitsem_spatial()
+
+# compute correlograms
+
+
+# create correlogram plots
+
+
+# write outputs for SEMs
+sem.aic(modelList=g1nopool,dat=dat.gpool1)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #------------ sr1 Rpool1
 
@@ -79,10 +121,12 @@ sem.aic(modelList=sr1pool,dat=dat.rpool1)
 # path coefficients
 sr1nopool.cf<-sem.coefs(modelList=sr1nopool,dat=dat.rpool1,standardize="scale")
 tmp<-sr1nopool.cf[1:5]
+
 WriteXLS(tmp,ExcelFileName="/mnt/data1tb/Dropbox/Fagus/resultsJuly16/pathcoefs/sr1nopool.xlsx",row.names=FALSE,col.names=TRUE,BoldHeaderRow = TRUE)
 
 sr1pool.cf<-sem.coefs(modelList=sr1pool,dat=dat.rpool1,standardize="scale")
 tmp<-sr1pool.cf[1:5]
+
 WriteXLS(tmp,ExcelFileName="/mnt/data1tb/Dropbox/Fagus/resultsJuly16/pathcoefs/sr1pool.xlsx",row.names=FALSE,col.names=TRUE,BoldHeaderRow = TRUE)
 
 
@@ -104,7 +148,6 @@ WriteXLS(tmp,ExcelFileName="/mnt/data1tb/Dropbox/Fagus/resultsJuly16/pathcoefs/s
 
 #------------ sr1 Gpool1
 # AIC 
-sem.aic(modelList=g1nopool,dat=dat.gpool1)
 
 sem.aic(modelList=g1pool,dat=dat.gpool1)
 
@@ -131,20 +174,4 @@ WriteXLS(tmp,ExcelFileName="/mnt/data1tb/Dropbox/Fagus/resultsJuly16/pathcoefs/g
 g2pool.cf<-sem.coefs(modelList=g2pool,dat=dat.gpool2,standardize="scale")
 tmp<-g2pool.cf[1:5]
 WriteXLS(tmp,ExcelFileName="/mnt/data1tb/Dropbox/Fagus/resultsJuly16/pathcoefs/g2pool.xlsx",row.names=FALSE,col.names=TRUE,BoldHeaderRow = TRUE)
-
-
-
-
-###################
-# SEM with spatial
-# aucorrelation
-###################
-
-
-
-
-
-
-
-
 

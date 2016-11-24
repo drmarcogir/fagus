@@ -7,6 +7,8 @@
 # Regional species pools
 #------------------------
 
+fitsem_wrapper<-function(){
+
 # model for SR1 (no species pool)
 sr1nopool=list(
   m1<-glm(SR1~LGMS+DIST+TOPO+ATEMP+APREC+SPREC+PLOT+PH+L+T+M+N+R,data=dat.rpool1,family=poisson),
@@ -85,4 +87,8 @@ g2pool=list(
   m5<-glm(M~APREC+SPREC,data=dat.gpool2,family=gaussian),
   m6<-glm(N~APREC+SPREC,data=dat.gpool2,family=gaussian)
 )
+
+}
+
+
 
