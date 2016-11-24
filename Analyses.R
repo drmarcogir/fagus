@@ -8,6 +8,9 @@ library(dismo);library(WriteXLS);library(piecewiseSEM)
 library(lme4);library(pgirmess);library(vegan)
 library(stringi);library(nlme);library(MASS)
 library(stringr);library(boot);library(dismo)
+library(doMC);library(foreach);library(MASS)
+library(nlme)
+registerDoMC(cores = 2)
 
 # source required functions
 marcofunctions<-list.files("/mnt/data1tb/Dropbox/Fagus/scripts/fagus/marcosfunctions",full.names=TRUE)
@@ -16,6 +19,7 @@ for (f in 1:length(marcofunctions)) {source(marcofunctions[f])}
 dat<-read.csv("/mnt/data1tb/Dropbox/Fagus/dataJuly16/newdata.csv")
 # standardize variables
 source("/mnt/data1tb/Dropbox/Fagus/scripts/fagus/Dataprepare.R")
+
 
 ###################
 # BRT models

@@ -1,7 +1,10 @@
-#####################
-# SEM model fitting 
-# (piecewise SEMs )
-#####################
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+# Fit SEM models and 
+# Script created by Marco Girardello
+#13/07/2016 
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
 
 fitsem_wrapper<-function(.){
   
