@@ -109,7 +109,7 @@ g2poolall<-merge(g2pool[1:5],g2poolci)
 writeWorksheetToFile(data=g2poolall,file="/mnt/data1tb/Dropbox/Fagus/resultsOctober/excel/Fagusresults.xlsx",
 sheet = "SEMcoefs", header = FALSE,startCol=8,startRow=87,styleAction =XLC$"STYLE_ACTION.NONE")
 
-# write outputs for SEMs
+# calculate AIC values for SEMs
 df1<-data.frame(AIC=sem.aic(modelList=semmods[[1]],dat=dat.rpool1)$AIC,model=names(semmods[1]))
 df2<-data.frame(AIC=sem.aic(modelList=semmods[[2]],dat=dat.rpool1)$AIC,model=names(semmods[2]))
 df3<-data.frame(AIC=sem.aic(modelList=semmods[[3]],dat=dat.rpool1)$AIC,model=names(semmods[3]))
