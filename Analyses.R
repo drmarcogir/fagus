@@ -37,7 +37,7 @@ predresp<-list(c("SR1","PLOT","ATEMP","APREC","SPREC","PH","LGMS","DIST","TOPO",
                c("SR2","PLOT","ATEMP","APREC","SPREC","PH","LGMS","DIST","TOPO","Gpool2","L","M","R","N","T"),
                c("SR2","PLOT","ATEMP","APREC","SPREC","PH","LGMS","DIST","TOPO","L","M","R","N","T"))
 
-
+# fit models
 brtresults<-fitbrt_wrapper(inputdat=dat1,modlist=predresp)
 
 # write output results
