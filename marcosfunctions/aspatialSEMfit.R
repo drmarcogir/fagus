@@ -22,7 +22,7 @@ fitsem_aspatial<-function(inputdf){
             filenamedat<-paste("datmod",par$modID,".csv",sep = "")
             write.csv(dat,filenamedat,row.names=FALSE)
             # fit model
-            modg<-gls(form1,correlation=corExp(form=~UTMx+UTMy,nugget=TRUE),data=dat)
+            modg<-gls(form1,data=dat)
             #modg <- gls(form1, data = dat)            
             # model name
             filename <- paste("mod", par$modID,sep = "")
@@ -45,7 +45,7 @@ fitsem_aspatial<-function(inputdf){
                 filenamedat<-paste("datmod",par$modID,".csv",sep = "")
                 write.csv(dat,filenamedat,row.names=FALSE)                 
                 # fit model
-                modranef<- glmmPQL(form1, form2, family = poisson, data = dat)
+                modranef<- glmmPQL(form1, form2, family = poisson,correlation=corExp(form=~UTMx +UTMy,nugget=TRUE),data = dat)
                 #mod <- glm(form1, family = poisson, data = dat)
                 # model name
                 filename <- paste("mod",par$modID, sep = "")

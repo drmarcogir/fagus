@@ -79,6 +79,15 @@ g2pool<-sem.coefs(modelList=semmods[[8]],dat=dat.gpool2,standardize="scale")
 
 
 # aspatial models (individual regressions)
+
+# model list
+modlookup<-read.csv("/mnt/data1tb/Dropbox/Fagus/data/modelsSACSep16.csv")
+modlookup$random.effect<-stri_replace_all_fixed(modlookup$random.effect, " ", "")
+
+# fit models (no spatial autocorrelation)
+setwd("/mnt/data1tb/Dropbox/Fagus/resultsOctober/alternativecorr/gaus")
+fitgls1(inputdf=modlookupn)
+
 fitsem_aspatial()
 
 # spatial models (individual regressions) 
