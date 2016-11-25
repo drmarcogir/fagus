@@ -20,7 +20,6 @@ dat<-read.csv("/mnt/data1tb/Dropbox/Fagus/dataJuly16/newdata.csv")
 # standardize variables
 source("/mnt/data1tb/Dropbox/Fagus/scripts/fagus/Dataprepare.R")
 
-
 ###################
 # BRT models
 ###################
