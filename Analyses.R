@@ -11,7 +11,6 @@ library(stringr);library(boot);library(dismo)
 library(doMC);library(foreach);library(MASS)
 library(nlme)
 registerDoMC(cores = 4)
-
 # source required functions
 marcofunctions<-list.files("/mnt/data1tb/Dropbox/Fagus/scripts/fagus/marcosfunctions",full.names=TRUE)
 for (f in 1:length(marcofunctions)) {source(marcofunctions[f])}
