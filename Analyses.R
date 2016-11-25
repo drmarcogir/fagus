@@ -112,33 +112,35 @@ writeWorksheetToFile(data=g2poolall,file="/mnt/data1tb/Dropbox/Fagus/resultsOcto
 sheet = "SEMcoefs", header = FALSE,startCol=8,startRow=87,styleAction =XLC$"STYLE_ACTION.NONE")
 
 # write outputs for SEMs
-sem.aic(modelList=semmods[[1]],dat=dat.rpool1)
-sem.aic(modelList=semmods[[2]],dat=dat.rpool1)
-sem.aic(modelList=semmods[[3]],dat=dat.rpool2)
-sem.aic(modelList=semmods[[4]],dat=dat.rpool2)
-sem.aic(modelList=semmods[[5]],dat=dat.rpool2)
-sem.aic(modelList=semmods[[6]],dat=dat.rpool2)
-sem.aic(modelList=semmods[[5]],dat=dat.rpool2)
-sem.aic(modelList=semmods[[6]],dat=dat.rpool2)
+df1<-data.frame(AIC=sem.aic(modelList=semmods[[1]],dat=dat.rpool1)$AIC,model=names(semmods[1]))
+df2<-data.frame(AIC=sem.aic(modelList=semmods[[2]],dat=dat.rpool1)$AIC,model=names(semmods[2]))
+df3<-data.frame(AIC=sem.aic(modelList=semmods[[3]],dat=dat.rpool1)$AIC,model=names(semmods[3]))
+df4<-data.frame(AIC=sem.aic(modelList=semmods[[4]],dat=dat.rpool1)$AIC,model=names(semmods[4]))
+df5<-data.frame(AIC=sem.aic(modelList=semmods[[5]],dat=dat.rpool1)$AIC,model=names(semmods[5]))
+df6<-data.frame(AIC=sem.aic(modelList=semmods[[6]],dat=dat.rpool1)$AIC,model=names(semmods[6]))
+df7<-data.frame(AIC=sem.aic(modelList=semmods[[7]],dat=dat.rpool1)$AIC,model=names(semmods[7]))
+df8<-data.frame(AIC=sem.aic(modelList=semmods[[8]],dat=dat.rpool1)$AIC,model=names(semmods[8]))
+aic<-rbind(df1,df2,df3,df4,df5,df6,df7,df8)
 
+# write AIC results
+writeWorksheetToFile(data=aic,file="/mnt/data1tb/Dropbox/Fagus/resultsOctober/excel/Fagusresults.xlsx",
+sheet = "SEMAIC", header = FALSE,startCol=1,startRow=2,styleAction =XLC$"STYLE_ACTION.NONE")
+
+###################################
+# spatial autocorrelation analyses
+###################################
 
 # aspatial models (individual regressions)
 # model list
 modlist<-read.csv("/mnt/data1tb/Dropbox/Fagus/data/modelsSACSep16.csv")
-
-# fit models (no spatial autocorrelation)
 # need to set working directory
 setwd("/mnt/data1tb/Dropbox/Fagus/resultsOctober/new/aspatial")
 #inputdf=modlist
-
 fitsem_aspatial(inputdf=modlist)
-
-
 # spatial models (individual regressions) 
 fitsem_spatial()
-
 # compute correlograms aspatial models
 
 # compute correlograms spatial models
-
 # create correlogram plots
+
