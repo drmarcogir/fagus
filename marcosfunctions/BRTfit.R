@@ -15,7 +15,8 @@ fitbrt_wrapper<-function(inputdat,predresp){
     dat2<-dat1[,cols]
     dat3<-na.exclude(dat2)
     # fit model
-    mod<-gbm.step(data=dat3,gbm.x=match(predresp[[i]][-1],names(dat3)),gbm.y=match(predresp[[i]][1],names(dat3)),family="poisson",tree.complexity = 3, learning.rate = 0.001, bag.fraction = 0.5,step.size=100)
+    mod<-gbm.step(data=dat3,gbm.x=match(predresp[[i]][-1],names(dat3)),gbm.y=match(predresp[[i]][1],
+    names(dat3)),family="poisson",tree.complexity = 3, learning.rate = 0.001, bag.fraction = 0.5,step.size=100)
     # save object
     objname<-paste("/mnt/data1tb/Dropbox/Fagus/modelsJuly16/mod_",i,sep="")
     save(mod,file=objname)
