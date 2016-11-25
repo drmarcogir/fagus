@@ -65,21 +65,6 @@ g1poolci<-getci(modlist=semmods[[6]],indat=dat.gpool1)
 g2nopoolci<-getci(modlist=semmods[[7]],indat=dat.gpool2)
 g2poolci<-getci(modlist=semmods[[8]],indat=dat.gpool2)
 
-# temporary (load confidence intervals)
-load("/mnt/data1tb/Dropbox/Fagus/resultsOctober/bootstrap/g1nopoolci")
-load("/mnt/data1tb/Dropbox/Fagus/resultsOctober/bootstrap/g1poolci")
-
-load("/mnt/data1tb/Dropbox/Fagus/resultsOctober/bootstrap/g2nopoolci")
-load("/mnt/data1tb/Dropbox/Fagus/resultsOctober/bootstrap/g2poolci")
-
-
-load("/mnt/data1tb/Dropbox/Fagus/resultsOctober/bootstrap/sr1nopoolci")
-load("/mnt/data1tb/Dropbox/Fagus/resultsOctober/bootstrap/sr1poolci")
-
-load("/mnt/data1tb/Dropbox/Fagus/resultsOctober/bootstrap/sr2nopoolci")
-load("/mnt/data1tb/Dropbox/Fagus/resultsOctober/bootstrap/sr2poolci")
-
-
 # standardized path coefficients
 sr1nopool<-sem.coefs(modelList=semmods[[1]],dat=dat.rpool1,standardize="scale")
 sr1pool<-sem.coefs(modelList=semmods[[2]],dat=dat.rpool1,standardize="scale")
@@ -93,7 +78,7 @@ g1pool<-sem.coefs(modelList=semmods[[6]],dat=dat.gpool1,standardize="scale")
 g2nopool<-sem.coefs(modelList=semmods[[7]],dat=dat.gpool2,standardize="scale")
 g2pool<-sem.coefs(modelList=semmods[[8]],dat=dat.gpool2,standardize="scale")
 
-# merge results with confidence interval results
+# Write results on excel spreadsheet
 sr1nopoolall<-merge(sr1nopool[1:5],sr1nopoolci)
 writeWorksheetToFile(data=sr1nopoolall,file="/mnt/data1tb/Dropbox/Fagus/resultsOctober/excel/Fagusresults.xlsx",
 sheet = "SEMcoefs", header = FALSE,startCol=1,startRow=2,styleAction =XLC$"STYLE_ACTION.NONE")
@@ -110,9 +95,34 @@ sr2poolall<-merge(sr2pool[1:5],sr2poolci)
 writeWorksheetToFile(data=sr2poolall,file="/mnt/data1tb/Dropbox/Fagus/resultsOctober/excel/Fagusresults.xlsx",
 sheet = "SEMcoefs", header = FALSE,startCol=8,startRow=30,styleAction =XLC$"STYLE_ACTION.NONE")
 
+g1nopoolall<-merge(g1nopool[1:5],g1nopoolci)
+writeWorksheetToFile(data=g1nopoolall,file="/mnt/data1tb/Dropbox/Fagus/resultsOctober/excel/Fagusresults.xlsx",
+sheet = "SEMcoefs", header = FALSE,startCol=1,startRow=58,styleAction =XLC$"STYLE_ACTION.NONE")
+
+g1poolall<-merge(g1pool[1:5],g1poolci)
+writeWorksheetToFile(data=g1poolall,file="/mnt/data1tb/Dropbox/Fagus/resultsOctober/excel/Fagusresults.xlsx",
+sheet = "SEMcoefs", header = FALSE,startCol=8,startRow=58,styleAction =XLC$"STYLE_ACTION.NONE")
+
+g2nopoolall<-merge(g2nopool[1:5],g2nopoolci)
+writeWorksheetToFile(data=g2nopoolall,file="/mnt/data1tb/Dropbox/Fagus/resultsOctober/excel/Fagusresults.xlsx",
+sheet = "SEMcoefs", header = FALSE,startCol=1,startRow=87,styleAction =XLC$"STYLE_ACTION.NONE")
+
+g2poolall<-merge(g2pool[1:5],g2poolci)
+writeWorksheetToFile(data=g2poolall,file="/mnt/data1tb/Dropbox/Fagus/resultsOctober/excel/Fagusresults.xlsx",
+sheet = "SEMcoefs", header = FALSE,startCol=8,startRow=87,styleAction =XLC$"STYLE_ACTION.NONE")
+
+# write outputs for SEMs
+sem.aic(modelList=semmods[[1]],dat=dat.rpool1)
+sem.aic(modelList=semmods[[2]],dat=dat.rpool1)
+sem.aic(modelList=semmods[[3]],dat=dat.rpool2)
+sem.aic(modelList=semmods[[4]],dat=dat.rpool2)
+sem.aic(modelList=semmods[[5]],dat=dat.rpool2)
+sem.aic(modelList=semmods[[6]],dat=dat.rpool2)
+sem.aic(modelList=semmods[[5]],dat=dat.rpool2)
+sem.aic(modelList=semmods[[6]],dat=dat.rpool2)
+
 
 # aspatial models (individual regressions)
-
 # model list
 modlist<-read.csv("/mnt/data1tb/Dropbox/Fagus/data/modelsSACSep16.csv")
 
@@ -132,12 +142,6 @@ fitsem_spatial()
 # compute correlograms spatial models
 
 # create correlogram plots
-
-# write outputs for SEMs
-sem.aic(modelList=semmods[[1]],dat=dat.gpool1)
-sem.aic(modelList=g1nopool,dat=dat.gpool1)
-sem.aic(modelList=g1nopool,dat=dat.gpool1)
-sem.aic(modelList=g1nopool,dat=dat.gpool1)
 
 
 
