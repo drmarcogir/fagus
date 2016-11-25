@@ -40,6 +40,7 @@ predresp<-list(c("SR1","PLOT","ATEMP","APREC","SPREC","PH","LGMS","DIST","TOPO",
 
 
 brtresults<-fitbrt_wrapper(inputdat=dat1,modlist=predresp)
+
 # write output results
 writeWorksheetToFile(data=brtresults,file="/mnt/data1tb/Dropbox/Fagus/resultsOctober/excel/Fagusresults.xlsx",sheet = "BRTresults", header = TRUE,startCol=1,
 startRow=1,styleAction =XLC$"STYLE_ACTION.NONE")
@@ -47,7 +48,6 @@ startRow=1,styleAction =XLC$"STYLE_ACTION.NONE")
 ###################
 # SEM models
 ###################
-
 # aspatial models (as lists. required by piecewiseSEM package)
 semmods<-fitsem_wrapper()
 
@@ -128,7 +128,6 @@ sheet = "SEMAIC", header = FALSE,startCol=1,startRow=2,styleAction =XLC$"STYLE_A
 ###################################
 # spatial autocorrelation analyses
 ###################################
-
 # aspatial models (individual regressions)
 # model list
 modlist<-read.csv("/mnt/data1tb/Dropbox/Fagus/data/modelsSACSep16.csv")
