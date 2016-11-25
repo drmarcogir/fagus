@@ -5,7 +5,7 @@
 # 19/02/2016 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-fitbrt_wrapper<-function(inputdat,predresp){
+fitbrt_wrapper<-function(inputdat,modlist){
   # list where to store results
   results<-vector("list",length(predresp))
   # loop through models to fit

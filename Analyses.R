@@ -4,13 +4,13 @@
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 # load required libraries
-library(dismo);library(WriteXLS);library(piecewiseSEM)
+library(dismo);library(piecewiseSEM);library(XLConnect)
 library(lme4);library(pgirmess);library(vegan)
 library(stringi);library(nlme);library(MASS)
 library(stringr);library(boot);library(dismo)
 library(doMC);library(foreach);library(MASS)
 library(nlme)
-registerDoMC(cores = 2)
+registerDoMC(cores = 4)
 
 # source required functions
 marcofunctions<-list.files("/mnt/data1tb/Dropbox/Fagus/scripts/fagus/marcosfunctions",full.names=TRUE)
@@ -42,7 +42,8 @@ predresp<-list(c("SR1","PLOT","ATEMP","APREC","SPREC","PH","LGMS","DIST","TOPO",
 
 brtresults<-fitbrt_wrapper(inputdat=dat1,modlist=predresp)
 # write output results
-WriteXLS(results1,ExcelFileName="/mnt/data1tb/Dropbox/Fagus/resultsJuly16/BRT.xlsx",row.names=FALSE,col.names=TRUE,BoldHeaderRow = TRUE)
+writeWorksheetToFile(data=brtresults,file="/mnt/data1tb/Dropbox/Fagus/resultsOctober/excel/Fagusresults.xlsx",sheet = "BRTresults", header = TRUE,startCol=1,
+startRow=1,styleAction =XLC$"STYLE_ACTION.NONE")
 
 ###################
 # SEM models
@@ -81,14 +82,15 @@ g2pool<-sem.coefs(modelList=semmods[[8]],dat=dat.gpool2,standardize="scale")
 # aspatial models (individual regressions)
 
 # model list
-modlookup<-read.csv("/mnt/data1tb/Dropbox/Fagus/data/modelsSACSep16.csv")
-modlookup$random.effect<-stri_replace_all_fixed(modlookup$random.effect, " ", "")
+modlist<-read.csv("/mnt/data1tb/Dropbox/Fagus/data/modelsSACSep16.csv")
 
 # fit models (no spatial autocorrelation)
-setwd("/mnt/data1tb/Dropbox/Fagus/resultsOctober/alternativecorr/gaus")
-fitgls1(inputdf=modlookupn)
+# need to set working directory
+setwd("/mnt/data1tb/Dropbox/Fagus/resultsOctober/new/aspatial")
+#inputdf=modlist
 
-fitsem_aspatial()
+fitsem_aspatial(inputdf=modlist)
+
 
 # spatial models (individual regressions) 
 fitsem_spatial()
