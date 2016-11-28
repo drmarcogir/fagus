@@ -1,9 +1,7 @@
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 # Fit aspatial SEM models as 
 # separate regressions 
-# Script created by Marco Girardello
-# 13/07/2016 
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 fitsem_aspatial<-function(inputdf){ 
   len<-dim(inputdf)[1]   

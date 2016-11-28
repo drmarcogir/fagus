@@ -1,5 +1,8 @@
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+# Bootstrap confidence intervals 
+# for piecewise SEMs
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-# main bootstrap function
 getci<-function(modlist,indat){
   results<-NULL
   for (i in 1:length(modlist)){ # go through model list 

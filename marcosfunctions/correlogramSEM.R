@@ -1,9 +1,8 @@
 #################################
 # Function for calculating
-# Moran's I correlgrams starting
-# from SEM models
+# Moran's I correlograms starting
+# from piewise SEM models
 ################################
-
 
 # calculate spatial autocorrelation 
 sacmg <- function(inputdf, inpath) {
