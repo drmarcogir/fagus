@@ -4,6 +4,7 @@
 # Script created by Marco Girardello
 # 13/07/2016 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
 fitsem_aspatial<-function(inputdf){ 
   len<-dim(inputdf)[1]   
   for (i in 1:len){        
