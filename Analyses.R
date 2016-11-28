@@ -65,17 +65,18 @@ g2nopoolci<-getci(modlist=semmods[[7]],indat=dat.gpool2)
 g2poolci<-getci(modlist=semmods[[8]],indat=dat.gpool2)
 
 # standardized path coefficients
-sr1nopool<-sem.coefs(modelList=semmods[[1]],dat=dat.rpool1,standardize="scale")
-sr1pool<-sem.coefs(modelList=semmods[[2]],dat=dat.rpool1,standardize="scale")
+sr1nopool<-sem.coefs(modelList=semmods[[1]],dat=dat.rpool1,standardize="none")
+sr1pool<-sem.coefs(modelList=semmods[[2]],dat=dat.rpool1,standardize="none")
 
-sr2nopool<-sem.coefs(modelList=semmods[[3]],dat=dat.rpool2,standardize="scale")
-sr2pool<-sem.coefs(modelList=semmods[[4]],dat=dat.rpool2,standardize="scale")
+sr2nopool<-sem.coefs(modelList=semmods[[3]],dat=dat.rpool2,standardize="none")
+sr2pool<-sem.coefs(modelList=semmods[[4]],dat=dat.rpool2,standardize="none")
 
-g1nopool<-sem.coefs(modelList=semmods[[5]],dat=dat.gpool1,standardize="scale")
-g1pool<-sem.coefs(modelList=semmods[[6]],dat=dat.gpool1,standardize="scale")
+g1nopool<-sem.coefs(modelList=semmods[[5]],dat=dat.gpool1,standardize="none")
+g1pool<-sem.coefs(modelList=semmods[[6]],dat=dat.gpool1,standardize="none")
 
-g2nopool<-sem.coefs(modelList=semmods[[7]],dat=dat.gpool2,standardize="scale")
-g2pool<-sem.coefs(modelList=semmods[[8]],dat=dat.gpool2,standardize="scale")
+g2nopool<-sem.coefs(modelList=semmods[[7]],dat=dat.gpool2,standardize="none")
+g2pool<-sem.coefs(modelList=semmods[[8]],dat=dat.gpool2,standardize="none")
+
 
 # Write results on excel spreadsheet
 sr1nopoolall<-merge(sr1nopool[1:5],sr1nopoolci)
@@ -128,17 +129,31 @@ sheet = "SEMAIC", header = FALSE,startCol=1,startRow=2,styleAction =XLC$"STYLE_A
 ###################################
 # spatial autocorrelation analyses
 ###################################
-# aspatial models (individual regressions)
 # model list
 modlist<-read.csv("/mnt/data1tb/Dropbox/Fagus/data/modelsSACSep16.csv")
-# need to set working directory
+moranmods<-subset(modlist,moran.filter==1)
+
+# fit aspatial models
 setwd("/mnt/data1tb/Dropbox/Fagus/resultsOctober/new/aspatial")
-#inputdf=modlist
 fitsem_aspatial(inputdf=modlist)
-# spatial models (individual regressions) 
-fitsem_spatial()
+
+# fit spatial models (Exponential correlation structure)
+setwd("/mnt/data1tb/Dropbox/Fagus/resultsOctober/new/spatial")
+fitsem_spatial(inputdf=modlist)
+
 # compute correlograms aspatial models
+corrnosac<-sacmg(inputdf=moranmods,inpath="/mnt/data1tb/Dropbox/Fagus/resultsOctober/new/aspatial")
 
 # compute correlograms spatial models
+corrnosac<-sacmg(inputdf=moranmods,inpath="/mnt/data1tb/Dropbox/Fagus/resultsOctober/new/aspatial")
+
 # create correlogram plots
+nosacp<-ggplot(corrnosac,aes(x=dist.class,y=coef))+geom_point(size=2)+geom_line()+ylab("Moran I")+xlab("Distance (km)")
++facet_wrap(~title)
+sacgausp<-ggplot(corrnosac,aes(x=dist.class,y=coef))+geom_point(size=2)+geom_line()+ylab("Moran I")+xlab("Distance (km)")
++facet_wrap(~title)
+
+# save plots
+ggsave(filename="/mnt/data1tb/Dropbox/Fagus/resultsOctober/sacplots/nosac.pdf",plot =nosac,width=12,height=10)
+ggsave(filename="/mnt/data1tb/Dropbox/Fagus/resultsOctober/sacplots/sacexpp.pdf",plot =sacexpp,width=8,height=8)
 

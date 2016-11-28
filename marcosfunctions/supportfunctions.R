@@ -90,7 +90,6 @@ coefglm2<- function(formula, data, indices) {
        return(summary(fit)$coefficients[,1][-1])
        }
 
-
 ################################
 # function for splitting text
 #################################

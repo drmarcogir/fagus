@@ -6,7 +6,7 @@
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 
-fitsem_aspatial<-function(inputdf){    
+fitsem_spatial<-function(inputdf){    
   foreach(i = 1:dim(inputdf)[1], .errorhandling = c("remove")) %dopar% {        
     # input parameters
     par <- inputdf[i, ]        
