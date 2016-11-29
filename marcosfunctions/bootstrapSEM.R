@@ -1,7 +1,7 @@
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 # Bootstrap confidence intervals 
-# for piecewise SEMs
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+# for SEMs fitted as lists (piecewiseSEM)
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 getci<-function(modlist,indat){
   results<-NULL
