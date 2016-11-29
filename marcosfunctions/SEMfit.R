@@ -1,8 +1,8 @@
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-# Fit SEM models and 
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+# Fit SEM models as lists (piecewiseSEM)
 # Script created by Marco Girardello
 #13/07/2016 
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 fitsem_wrapper<-function(.){
     # model for SR1 (no species pool)
