@@ -5,7 +5,6 @@
 # 14/09/2016 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-
 fitsem_spatial<-function(inputdf){    
   foreach(i = 1:dim(inputdf)[1], .errorhandling = c("remove")) %dopar% {        
     # input parameters
