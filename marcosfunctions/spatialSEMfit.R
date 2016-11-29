@@ -46,7 +46,7 @@ fitsem_spatial<-function(inputdf){
         filenamedat<-paste("datmod",par$modID,".csv",sep = "")
         write.csv(dat,filenamedat,row.names=FALSE)                 
         # fit model
-        modranef<- glmmPQL(form1, form2, family = poisson, data = dat)
+        modranef<- glmmPQL(form1, form2,correlation=corExp(form=~UTMx+UTMy,nugget=TRUE),family = poisson, data = dat)
         #mod <- glm(form1, family = poisson, data = dat)
         # model name
         filename <- paste("mod",par$modID, sep = "")

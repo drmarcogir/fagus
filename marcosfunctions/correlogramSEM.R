@@ -21,7 +21,7 @@ sacmg <- function(inputdf, inpath) {
         # create correlogram
         cormg <- correlog(coords = mycoor, z = residuals(tmpmod), method = "Moran")
         # save correlogram
-        filen <- paste("mod", info$modID, sep = "")
+        filen <- paste("corr_mod", info$modID, sep = "")
         save(cormg, file = filen)
         # create final data frame for storing results
         tmpdf <- data.frame(cormg, title = info$title)

@@ -4,10 +4,8 @@
 # by Marco Girardello 19/09/2016
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-
-#######################################
 # SEM bootstrapping support functions
-######################################
+
 
 coeflme4<- function(formula, data, indices) {
        d <- data[indices,] # allows boot to select sample 
@@ -28,9 +26,7 @@ coefglm2<- function(formula, data, indices) {
        return(summary(fit)$coefficients[,1][-1])
        }
 
-################################
 # function for splitting text
-#################################
 
 swr = function(string, nwrap=20) {
   paste(strwrap(string, width=nwrap), collapse="\n")

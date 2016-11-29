@@ -140,12 +140,12 @@ moranmods<-subset(modlist,moran.filter==1)
 setwd("/mnt/data1tb/Dropbox/Fagus/resultsOctober/new/aspatial")
 fitsem_aspatial(inputdf=modlist)
 
+# compute correlograms aspatial models
+corrnosac<-sacmg(inputdf=moranmods,inpath="/mnt/data1tb/Dropbox/Fagus/resultsOctober/new/aspatial")
+
 # fit spatial models (Exponential correlation structure)
 setwd("/mnt/data1tb/Dropbox/Fagus/resultsOctober/new/spatial")
 fitsem_spatial(inputdf=modlist)
-
-# compute correlograms aspatial models
-corrnosac<-sacmg(inputdf=moranmods,inpath="/mnt/data1tb/Dropbox/Fagus/resultsOctober/new/aspatial")
 
 # compute correlograms spatial models
 corrnosac<-sacmg(inputdf=moranmods,inpath="/mnt/data1tb/Dropbox/Fagus/resultsOctober/new/aspatial")
