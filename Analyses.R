@@ -151,12 +151,10 @@ fitsem_spatial(inputdf=modlist)
 corrsac<-sacmg(inputdf=moranmods,inpath="/mnt/data1tb/Dropbox/Fagus/resultsOctober/new/spatial")
 
 # create correlogram plots
-nosacp<-ggplot(corrnosac,aes(x=dist.class,y=coef))+geom_point(size=2)+geom_line()+ylab("Moran I")+xlab("Distance (km)")
-+facet_wrap(~title)
-sacgausp<-ggplot(corrnosac,aes(x=dist.class,y=coef))+geom_point(size=2)+geom_line()+ylab("Moran I")+xlab("Distance (km)")
-+facet_wrap(~title)
+nosacp<-ggplot(corrnosac,aes(x=dist.class,y=coef))+geom_point(size=2)+geom_line()+ylab("Moran I")+xlab("Distance (km)")+facet_wrap(~title)
+sacp<-ggplot(corrnosac,aes(x=dist.class,y=coef))+geom_point(size=2)+geom_line()+ylab("Moran I")+xlab("Distance (km)")+facet_wrap(~title)
 
 # save plots
-ggsave(filename="/mnt/data1tb/Dropbox/Fagus/resultsOctober/sacplots/nosac.pdf",plot =nosac,width=12,height=10)
-ggsave(filename="/mnt/data1tb/Dropbox/Fagus/resultsOctober/sacplots/sacexpp.pdf",plot =sacexpp,width=8,height=8)
+ggsave(filename="/mnt/data1tb/Dropbox/Fagus/resultsOctober/sacplots/nosac.png",plot=nosacp,width=12,height=10)
+ggsave(filename="/mnt/data1tb/Dropbox/Fagus/resultsOctober/sacplots/sacp.png",plot =sacp,width=8,height=8)
 
