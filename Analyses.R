@@ -148,7 +148,7 @@ setwd("/mnt/data1tb/Dropbox/Fagus/resultsOctober/new/spatial")
 fitsem_spatial(inputdf=modlist)
 
 # compute correlograms spatial models
-corrnosac<-sacmg(inputdf=moranmods,inpath="/mnt/data1tb/Dropbox/Fagus/resultsOctober/new/aspatial")
+corrsac<-sacmg(inputdf=moranmods,inpath="/mnt/data1tb/Dropbox/Fagus/resultsOctober/new/spatial")
 
 # create correlogram plots
 nosacp<-ggplot(corrnosac,aes(x=dist.class,y=coef))+geom_point(size=2)+geom_line()+ylab("Moran I")+xlab("Distance (km)")
