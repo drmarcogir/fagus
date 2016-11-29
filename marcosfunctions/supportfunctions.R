@@ -5,14 +5,11 @@
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 # SEM bootstrapping support functions
-
-
 coeflme4<- function(formula, data, indices) {
        d <- data[indices,] # allows boot to select sample 
        fit<-glmer(formula,family=poisson,data=d) 
        return(summary(fit)$coefficients[,1][-1])
        }
-
 
 coefglm1<- function(formula, data, indices) {
        d <- data[indices,] # allows boot to select sample 
@@ -27,7 +24,6 @@ coefglm2<- function(formula, data, indices) {
        }
 
 # function for splitting text
-
 swr = function(string, nwrap=20) {
   paste(strwrap(string, width=nwrap), collapse="\n")
 }
