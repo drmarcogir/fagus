@@ -9,7 +9,8 @@ library(lme4);library(pgirmess);library(vegan)
 library(stringi);library(nlme);library(MASS)
 library(stringr);library(boot);library(dismo)
 library(doMC);library(foreach);library(MASS)
-library(nlme)
+library(nlme);library(spdep);library(ggplot2);
+library(WriteXLS)
 registerDoMC(cores = 4)
 
 # source required functions
@@ -132,29 +133,59 @@ sheet = "SEMAIC", header = FALSE,startCol=1,startRow=2,styleAction =XLC$"STYLE_A
 ###################################
 # spatial autocorrelation analyses
 ###################################
-# model list
-modlist<-read.csv("/mnt/data1tb/Dropbox/Fagus/data/modelsSACSep16.csv")
-moranmods<-subset(modlist,moran.filter==1)
 
+# model list
+moddf<-read.csv(file="/mnt/data1tb/Dropbox/Fagus/data/modlistNov16.csv")
 # fit aspatial models
 setwd("/mnt/data1tb/Dropbox/Fagus/resultsOctober/new/aspatial")
-fitsem_aspatial(inputdf=modlist)
-
+fitsem_aspatial(inputdf=moddf)
 # compute correlograms aspatial models
-corrnosac<-sacmg(inputdf=moranmods,inpath="/mnt/data1tb/Dropbox/Fagus/resultsOctober/new/aspatial")
+#corrnosac<-sacmg(inputdf=moddf,inpath="/mnt/data1tb/Dropbox/Fagus/resultsOctober/new/aspatial")
+#write.csv(corrnosac,file="/mnt/data1tb/Dropbox/Fagus/resultsOctober/new/aspatial/corrnosac.csv",row.names=F)
+corrnosac<-read.csv("/mnt/data1tb/Dropbox/Fagus/resultsOctober/new/aspatial/corrnosac.csv")
+corrnosac$dist.class<-corrnosac$dist.class/1000
+corrnosac$title<-strsplmg(corrnosac$title,breaks=25)
+# create plot
+sacp<-ggplot(corrnosac,aes(x=dist.class,y=coef))+geom_point(size=1.5)+geom_line()+ylab("Moran I")+xlab("Distance (km)")+facet_grid(sem.name~title)+theme_bw()+theme(strip.text.x = element_text(size=7, face="bold"),strip.text.y = element_text(size=8, face="bold"))
+# save plot
+ggsave(filename="/mnt/data1tb/Dropbox/Fagus/resultsOctober/sacplots/sacp1.png",plot =sacp,width=12,height=8)
 
-# fit spatial models (Exponential correlation structure)
+
+# fit spatial models (autoregressive models)
 setwd("/mnt/data1tb/Dropbox/Fagus/resultsOctober/new/spatial")
-fitsem_spatial(inputdf=modlist)
+# select models to fit
+moddf1<-moddf[moddf$modID %in% c(10,21,32,43),]
+# fit models
+spatiamods<-fitsem_spatial1(modlist=moddf1,neigh.l=1:7,coorn=c("UTMx","UTMy"))
+write.csv(spatiamods,file="corrsac.csv",row.names=F)
+spatiamods$title<-strsplmg(spatiamods$title,breaks=25)
+spatiamods1<-merge(moddf[,c("modID","formula")],spatiamods)
+spatiamods1$formula<-strsplmg(spatiamods1$formula,breaks=25)
 
-# compute correlograms spatial models
-corrsac<-sacmg(inputdf=moranmods,inpath="/mnt/data1tb/Dropbox/Fagus/resultsOctober/new/spatial")
+# create Moran's I plot
+sacp1<-ggplot(spatiamods1,aes(x=dist.class,y=coef))+geom_point(size=2)+geom_line()+ylab("Moran I")+xlab("Distance (km)")+facet_wrap(~formula+neigh)+theme_bw()
 
-# create correlogram plots
-nosacp<-ggplot(corrnosac,aes(x=dist.class,y=coef))+geom_point(size=2)+geom_line()+ylab("Moran I")+xlab("Distance (km)")+facet_wrap(~title)
-sacp<-ggplot(corrnosac,aes(x=dist.class,y=coef))+geom_point(size=2)+geom_line()+ylab("Moran I")+xlab("Distance (km)")+facet_wrap(~title)
+# after a careful examination of correlograms
+df1<-subset(spatiamods1,neigh==7 & sem.name=="All species & Geometric pool")
+df2<-subset(spatiamods1,neigh==7 & sem.name=="Specialists & Geometric pool")
+df3<-subset(spatiamods1,neigh==3 & sem.name=="All species & Regional pool")
+df4<-subset(spatiamods1,neigh==3 & sem.name=="Specialists & Regional pool")
+combined<-rbind(df1,df2,df3,df4)
+combined$dist.class<-combined$dist.class/1000
 
-# save plots
-ggsave(filename="/mnt/data1tb/Dropbox/Fagus/resultsOctober/sacplots/nosac.png",plot=nosacp,width=12,height=10)
-ggsave(filename="/mnt/data1tb/Dropbox/Fagus/resultsOctober/sacplots/sacp.png",plot =sacp,width=8,height=8)
+# create plot
+sacp2<-ggplot(combined,aes(x=dist.class,y=coef))+geom_point(size=2)+geom_line()+ylab("Moran I")+xlab("Distance (km)")+facet_wrap(sem.name~title)+theme_bw()
+
+# save plot
+ggsave(filename="/mnt/data1tb/Dropbox/Fagus/resultsOctober/sacplots/sacp2.png",plot=sacp2,width=8,height=8)
+
+
+# load models which have corrected for spatial autocorrelation
+# get coefficients, standard errors and p-values
+
+# models I am interested in
+c("Gpool1_n7","Gpool2_7","Rpool1_3","Rpool2_4")
+
+
+# bootstrap p-values for these models (?)
 

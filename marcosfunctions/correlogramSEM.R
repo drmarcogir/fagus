@@ -24,7 +24,7 @@ sacmg <- function(inputdf, inpath) {
         filen <- paste("corr_mod", info$modID, sep = "")
         save(cormg, file = filen)
         # create final data frame for storing results
-        tmpdf <- data.frame(cormg, title = info$title)
+        tmpdf <- data.frame(cormg, title = info$formula_title,modID=info$modID,sem.name=info$sem.name2)
         tmpdf$title = swr(tmpdf$title)
         results <- rbind(tmpdf, results)
     }

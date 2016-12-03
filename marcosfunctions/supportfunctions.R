@@ -29,3 +29,19 @@ swr = function(string, nwrap=20) {
 }
 swr = Vectorize(swr)
 
+# split strings
+strsplmg<-function(name,breaks){
+  res<-NULL
+  for (i in 1:length(name)){
+    tmpv<-paste(stri_wrap(name[i],width=breaks,use_length=TRUE),collapse="\n")
+    res[i]<-tmpv
+  }
+  return(res)
+}
+
+
+
+# get models according to some criterion
+#getmodels<-function(modnames){
+  
+  
