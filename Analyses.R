@@ -54,7 +54,7 @@ startRow=1,styleAction =XLC$"STYLE_ACTION.NONE")
 
 # aspatial models (as lists. required by piecewiseSEM package)
 semmods<-fitsem_wrapper()
-
+semmods<-fitsem_wrapper1()
 # bootstrap confidence intervals
 sr1nopoolci<-getci(modlist=semmods[[1]],indat=dat.rpool1)
 sr1poolci<-getci(modlist=semmods[[2]],indat=dat.rpool1)
@@ -135,20 +135,20 @@ sheet = "SEMAIC", header = FALSE,startCol=1,startRow=2,styleAction =XLC$"STYLE_A
 ###################################
 
 # model list
-moddf<-read.csv(file="/mnt/data1tb/Dropbox/Fagus/data/modlistNov16.csv")
+moddf<-read.csv(file="/mnt/data1tb/Dropbox/Fagus/data/modlistNov16b.csv")
 # fit aspatial models
 setwd("/mnt/data1tb/Dropbox/Fagus/resultsOctober/new/aspatial")
 fitsem_aspatial(inputdf=moddf)
 # compute correlograms aspatial models
-#corrnosac<-sacmg(inputdf=moddf,inpath="/mnt/data1tb/Dropbox/Fagus/resultsOctober/new/aspatial")
-#write.csv(corrnosac,file="/mnt/data1tb/Dropbox/Fagus/resultsOctober/new/aspatial/corrnosac.csv",row.names=F)
-corrnosac<-read.csv("/mnt/data1tb/Dropbox/Fagus/resultsOctober/new/aspatial/corrnosac.csv")
+corrnosac<-sacmg(inputdf=moddf,inpath="/mnt/data1tb/Dropbox/Fagus/resultsOctober/new/aspatial")
+#write.csv(corrnosac,file="/mnt/data1tb/Dropbox/Fagus/resultsOctober/new/aspatial/corrnosacb.csv",row.names=F)
+#corrnosac<-read.csv("/mnt/data1tb/Dropbox/Fagus/resultsOctober/new/aspatial/corrnosac.csv")
 corrnosac$dist.class<-corrnosac$dist.class/1000
 corrnosac$title<-strsplmg(corrnosac$title,breaks=25)
 # create plot
 sacp<-ggplot(corrnosac,aes(x=dist.class,y=coef))+geom_point(size=1.5)+geom_line()+ylab("Moran I")+xlab("Distance (km)")+facet_grid(sem.name~title)+theme_bw()+theme(strip.text.x = element_text(size=7, face="bold"),strip.text.y = element_text(size=8, face="bold"))
 # save plot
-ggsave(filename="/mnt/data1tb/Dropbox/Fagus/resultsOctober/sacplots/sacp1.png",plot =sacp,width=12,height=8)
+ggsave(filename="/mnt/data1tb/Dropbox/Fagus/resultsOctober/sacplots/sacp1b.png",plot =sacp,width=12,height=8)
 
 
 # fit spatial models (autoregressive models)
@@ -173,6 +173,7 @@ df4<-subset(spatiamods1,neigh==3 & sem.name=="Specialists & Regional pool")
 combined<-rbind(df1,df2,df3,df4)
 combined$dist.class<-combined$dist.class/1000
 
+
 # create plot
 sacp2<-ggplot(combined,aes(x=dist.class,y=coef))+geom_point(size=2)+geom_line()+ylab("Moran I")+xlab("Distance (km)")+facet_wrap(sem.name~title)+theme_bw()
 
@@ -182,10 +183,15 @@ ggsave(filename="/mnt/data1tb/Dropbox/Fagus/resultsOctober/sacplots/sacp2.png",p
 
 # load models which have corrected for spatial autocorrelation
 # get coefficients, standard errors and p-values
+coefsac<-getmodels(modnames=c("SR1pool_n3","SR2pool_n3","SR1poolG_n7","SR2poolG_n7"),inpath="/mnt/data1tb/Dropbox/Fagus/resultsOctober/new/spatial")
+row.names(coefsac)<-1:dim(coefsac)[1]
 
-# models I am interested in
-c("Gpool1_n7","Gpool2_7","Rpool1_3","Rpool2_4")
-
-
-# bootstrap p-values for these models (?)
-
+# write results onto excel spreadsheet
+writeWorksheetToFile(data=coefsac[1:6,2:5],file="/mnt/data1tb/Dropbox/Fagus/resultsOctober/excel/Fagusresults.xlsx",
+sheet = "SEMcoefsSAC", header = FALSE,startCol=9,startRow=87,styleAction =XLC$"STYLE_ACTION.NONE")
+writeWorksheetToFile(data=coefsac[7:12,2:5],file="/mnt/data1tb/Dropbox/Fagus/resultsOctober/excel/Fagusresults.xlsx",
+                     sheet = "SEMcoefsSAC", header = FALSE,startCol=9,startRow=58,styleAction =XLC$"STYLE_ACTION.NONE")
+writeWorksheetToFile(data=coefsac[13:18,2:5],file="/mnt/data1tb/Dropbox/Fagus/resultsOctober/excel/Fagusresults.xlsx",
+                     sheet = "SEMcoefsSAC", header = FALSE,startCol=9,startRow=35,styleAction =XLC$"STYLE_ACTION.NONE")
+writeWorksheetToFile(data=coefsac[19:24,2:5],file="/mnt/data1tb/Dropbox/Fagus/resultsOctober/excel/Fagusresults.xlsx",
+                     sheet = "SEMcoefsSAC", header = FALSE,startCol=9,startRow=7,styleAction =XLC$"STYLE_ACTION.NONE")

@@ -42,6 +42,20 @@ strsplmg<-function(name,breaks){
 
 
 # get models according to some criterion
-#getmodels<-function(modnames){
-  
-  
+getmodels<-function(modnames,inpath){
+  results<-NULL
+  for (i in 1:length(modnames)){
+    tmpmod<-get(load(paste(inpath,"/",modnames[i],sep="")))
+    summod<-summary(tmpmod)
+    coefs<-summod$Coef[-1,]
+    if(stri_sub(modnames[i],from=8,to=8)=="G"){
+      res<-data.frame(response=stri_sub(modnames[i],from=1,to=3),predictor=row.names(coefs),coefs[,1:2],p.values=coefs[,4],pool="Gpool")
+    } else {
+      res<-data.frame(response=stri_sub(modnames[i],from=1,to=3),predictor=row.names(coefs),coefs[,1:2],p.values=coefs[,4],pool="Rpool") 
+    }
+    results<-rbind(res,results)
+  }
+  return(results)
+}
+
+             
