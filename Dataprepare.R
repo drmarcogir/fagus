@@ -54,8 +54,8 @@ dat.rpool2$R<-scale(dat.rpool2$R,center=TRUE,scale=T)
 # exclude NAs for Gpool1
 dat.gpool1<-subset(dat1,!is.na(Gpool1))
 
-dat.gpool1$Rpool2f<-as.factor(dat.gpool1$Rpool2)
-dat.gpool1$Rpool2<-scale(dat.gpool1$Rpool2,center=TRUE,scale=T)
+#dat.gpool1$Rpool2f<-as.factor(dat.gpool1$Rpool2)
+dat.gpool1$Gpool1<-scale(dat.gpool1$Gpool1,center=TRUE,scale=T)
 dat.gpool1$LGMS<-scale(dat.gpool1$LGMS,center=TRUE,scale=T)
 dat.gpool1$DIST<-scale(dat.gpool1$DIST,center=TRUE,scale=T)
 dat.gpool1$TOPO<-scale(dat.gpool1$TOPO,center=TRUE,scale=T)
@@ -73,8 +73,8 @@ dat.gpool1$R<-scale(dat.gpool1$R,center=TRUE,scale=T)
 # exclude NAs for Gpool2
 dat.gpool2<-subset(dat1,!is.na(Gpool2))
 
-dat.gpool2$Rpool2f<-as.factor(dat.gpool2$Rpool2)
-dat.gpool2$Rpool2<-scale(dat.gpool2$Rpool2,center=TRUE,scale=T)
+#dat.gpool2$Rpool2f<-as.factor(dat.gpool2$Rpool2)
+dat.gpool2$Gpool2<-scale(dat.gpool2$Gpool2,center=TRUE,scale=T)
 dat.gpool2$LGMS<-scale(dat.gpool2$LGMS,center=TRUE,scale=T)
 dat.gpool2$DIST<-scale(dat.gpool2$DIST,center=TRUE,scale=T)
 dat.gpool2$TOPO<-scale(dat.gpool2$TOPO,center=TRUE,scale=T)
