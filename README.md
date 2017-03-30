@@ -129,7 +129,7 @@ writeWorksheetToFile(data=aic,file="/mnt/data1tb/Dropbox/Fagus/resultsOctober/ex
 sheet = "SEMAIC", header = FALSE,startCol=1,startRow=2,styleAction =XLC$"STYLE_ACTION.NONE")
 
 ###################################
-# spatial autocorrelation analyses
+# Spatial autocorrelation analyses
 ###################################
 
 # model list
