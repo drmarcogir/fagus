@@ -1,11 +1,6 @@
 ## Boosted regression Tree and Structural Equation modelling analyses for plant species richness in Beech forests (Fagus sylvatica) in Europe. 
 
 ```r
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-# Analyses species pools and local communities
-# Script created by Marco Girardello 19/02/2016 
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
 # load required libraries
 library(dismo);library(piecewiseSEM);library(XLConnect)
 library(lme4);library(pgirmess);library(vegan)
