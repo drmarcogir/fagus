@@ -89,3 +89,10 @@ dat.gpool2$M<-scale(dat.gpool2$M,center=TRUE,scale=T)
 dat.gpool2$N<-scale(dat.gpool2$N,center=TRUE,scale=T)
 dat.gpool2$R<-scale(dat.gpool2$R,center=TRUE,scale=T)
 
+
+brtdata<-list(dat.rpool2,dat.gpool1,dat.rpool2,dat.gpool1,dat.rpool2,dat.gpool1,dat.rpool2,
+dat.gpool1,dat.rpool2,dat.gpool1,dat.rpool2,dat.gpool1,dat.rpool2,dat.gpool1,dat.rpool2,
+dat.gpool1)
+vnames<-c("Rpool","Gpool","Rpool","Gpool","Rpool","Gpool","Rpool","Gpool","Rpool","Gpool","Rpool","Gpool",
+"Rpool","Gpool","Rpool","Gpool")
+names(brtdata)<-vnames
