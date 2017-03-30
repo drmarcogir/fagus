@@ -148,7 +148,7 @@ sacp<-ggplot(corrnosac,aes(x=dist.class,y=coef))+geom_point(size=1.5)+geom_line(
 ggsave(filename="/mnt/data1tb/Dropbox/Fagus/resultsOctober/sacplots/sacp1b.png",plot =sacp,width=12,height=8)
 
 
-# fit spatial models (autoregressive models)
+# fit piecewise SEM via a number of Spatial Autoregressive Models
 setwd("/mnt/data1tb/Dropbox/Fagus/resultsOctober/new/spatial")
 # select models to fit
 moddf1<-moddf[moddf$modID %in% c(10,21,32,43),]
@@ -162,7 +162,7 @@ spatiamods1$formula<-strsplmg(spatiamods1$formula,breaks=25)
 # create Moran's I plot
 sacp1<-ggplot(spatiamods1,aes(x=dist.class,y=coef))+geom_point(size=2)+geom_line()+ylab("Moran I")+xlab("Distance (km)")+facet_wrap(~formula+neigh)+theme_bw()
 
-# after a careful examination of correlograms
+# subset correct spatial models after a careful examination of correlograms
 df1<-subset(spatiamods1,neigh==7 & sem.name=="All species & Geometric pool")
 df2<-subset(spatiamods1,neigh==7 & sem.name=="Specialists & Geometric pool")
 df3<-subset(spatiamods1,neigh==3 & sem.name=="All species & Regional pool")
