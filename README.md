@@ -21,9 +21,9 @@ dat<-read.csv("/mnt/data1tb/Dropbox/Fagus/dataJuly16/newdata.csv")
 # standardize variables
 source("/mnt/data1tb/Dropbox/Fagus/scripts/fagus/Dataprepare.R")
 
-###################
-# BRT models
-###################
+################################
+# Boosted Regression Tree models
+################################
 
 # list of models 
 predresp<-list(c("SR1","PLOT","ATEMP","APREC","SPREC","PH","LGMS","DIST","TOPO","Rpool1"),
@@ -46,9 +46,9 @@ brtresults<-fitbrt_wrapper(inputdat=dat1,modlist=predresp)
 writeWorksheetToFile(data=brtresults,file="/mnt/data1tb/Dropbox/Fagus/resultsOctober/excel/Fagusresults.xlsx",sheet = "BRTresults", header = TRUE,startCol=1,
 startRow=1,styleAction =XLC$"STYLE_ACTION.NONE")
 
-###################
-# SEM models
-###################
+############################
+# Structural Equation Models
+############################
 
 # aspatial models (as lists. required by piecewiseSEM package)
 semmods<-fitsem_wrapper()
