@@ -54,8 +54,7 @@ writeWorksheetToFile(data=brtresults,file="/mnt/data1tb/Dropbox/Fagus/resultsOct
 sheet = "BRTresults", header = TRUE,startCol=1,startRow=1,styleAction =XLC$"STYLE_ACTION.NONE")
 
 
-# BRT models with community completness 
-# match columns to data frame
+# BRT models with community completness (August 2017)
 
 # directory where to save results
 setwd("/mnt/data1tb/Dropbox/Fagus/BRTsAug17")
