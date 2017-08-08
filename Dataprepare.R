@@ -1,8 +1,6 @@
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-# Fit BRT models and 
-# calculate variable importance
-# Script created by Marco Girardello
-# 19/02/2016 
+# Prepare dataset before model fitting
+# Year 2016
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 #---- Exclude outlier for PH
@@ -96,3 +94,7 @@ dat.gpool1)
 vnames<-c("Rpool","Gpool","Rpool","Gpool","Rpool","Gpool","Rpool","Gpool","Rpool","Gpool","Rpool","Gpool",
 "Rpool","Gpool","Rpool","Gpool")
 names(brtdata)<-vnames
+
+
+
+

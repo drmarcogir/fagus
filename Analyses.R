@@ -8,9 +8,9 @@ library(dismo);library(piecewiseSEM);library(XLConnect)
 library(lme4);library(pgirmess);library(vegan)
 library(stringi);library(nlme);library(MASS)
 library(stringr);library(boot);library(dismo)
-library(doMC);library(foreach);library(MASS)
-library(nlme);library(spdep);library(ggplot2);
-library(WriteXLS)
+library(doMC);library(foreach);library(spdep);
+library(ggplot2);library(WriteXLS);library(marcoUtils)
+library(dplyr);library(magrittr)
 registerDoMC(cores = 4)
 
 # source required functions
@@ -19,6 +19,7 @@ for (f in 1:length(marcofunctions)) {source(marcofunctions[f])}
 
 # read in data
 dat<-read.csv("/mnt/data1tb/Dropbox/Fagus/dataJuly16/newdata.csv")
+dat.aug17<-read.csv("/mnt/data1tb/Dropbox/Fagus/DataAugust17/data.csv") 
 
 # standardize variables
 source("/mnt/data1tb/Dropbox/Fagus/scripts/fagus/Dataprepare.R")
@@ -48,12 +49,27 @@ predresp<-list(c("SR1","PLOT","ATEMP","APREC","SPREC","PH","LGMS","DIST","TOPO",
 # fit models
 brtresults<-fitbrt_wrapper(inputdat=dat1,modlist=predresp)
 
+# write output results
+writeWorksheetToFile(data=brtresults,file="/mnt/data1tb/Dropbox/Fagus/resultsOctober/excel/Fagusresults.xlsx",
+sheet = "BRTresults", header = TRUE,startCol=1,startRow=1,styleAction =XLC$"STYLE_ACTION.NONE")
 
 
+# BRT models with community completness 
+# match columns to data frame
+
+# directory where to save results
+setwd("/mnt/data1tb/Dropbox/Fagus/BRTsAug17")
+predresp<-list(c("Rcom1","PLOT","ATEMP","APREC","SPREC","PH","LGMS","DIST","TOPO","Rpool1"),
+               c("Rcom2","PLOT","ATEMP","APREC","SPREC","PH","LGMS","DIST","TOPO","Rpool2"),
+               c("Gcom1","PLOT","ATEMP","APREC","SPREC","PH","LGMS","DIST","TOPO","Gpool1"),
+               c("Gcom2","PLOT","ATEMP","APREC","SPREC","PH","LGMS","DIST","TOPO","Rpool2"))
+
+brtresults<-fitbrt_wrapper(inputdat=dat.aug17,modlist=predresp,family="gaussian")
 
 # write output results
-writeWorksheetToFile(data=brtresults,file="/mnt/data1tb/Dropbox/Fagus/resultsOctober/excel/Fagusresults.xlsx",sheet = "BRTresults", header = TRUE,startCol=1,
-startRow=1,styleAction =XLC$"STYLE_ACTION.NONE")
+writeWorksheetToFile(data=brtresults,file="/mnt/data1tb/Dropbox/Fagus/resultsOctober/excel/FagusresultsAug17.xlsx",
+sheet = "BRTresults", header = TRUE,startCol=1,startRow=1,styleAction =XLC$"STYLE_ACTION.NONE")
+
 
 ###################
 # SEM models
@@ -202,3 +218,6 @@ writeWorksheetToFile(data=coefsac[13:18,2:5],file="/mnt/data1tb/Dropbox/Fagus/re
                      sheet = "SEMcoefsSAC", header = FALSE,startCol=9,startRow=35,styleAction =XLC$"STYLE_ACTION.NONE")
 writeWorksheetToFile(data=coefsac[19:24,2:5],file="/mnt/data1tb/Dropbox/Fagus/resultsOctober/excel/Fagusresults.xlsx",
                      sheet = "SEMcoefsSAC", header = FALSE,startCol=9,startRow=7,styleAction =XLC$"STYLE_ACTION.NONE")
+
+
+

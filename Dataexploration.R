@@ -22,7 +22,7 @@ cordata <- cor(envdf, use = "pairwise.complete.obs", method = "spearman")
 
 # pretty picture of intercorrelation
 tiff(filename="/mnt/data1tb/Dropbox/Fagus/results/correlogramRpool1.tif",width=2000,height=2000,pointsize=40)
-corrplot(cordata, method = "pie")
+corrplot(cordata, method = "pie",type = c("upper"))
 dev.off()
 
 # Gpool dataset
