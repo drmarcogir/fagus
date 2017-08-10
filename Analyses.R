@@ -61,7 +61,7 @@ setwd("/mnt/data1tb/Dropbox/Fagus/BRTsAug17")
 predresp<-list(c("Rcom1","PLOT","ATEMP","APREC","SPREC","PH","LGMS","DIST","TOPO","Rpool1"),
                c("Rcom2","PLOT","ATEMP","APREC","SPREC","PH","LGMS","DIST","TOPO","Rpool2"),
                c("Gcom1","PLOT","ATEMP","APREC","SPREC","PH","LGMS","DIST","TOPO","Gpool1"),
-               c("Gcom2","PLOT","ATEMP","APREC","SPREC","PH","LGMS","DIST","TOPO","Rpool2"))
+               c("Gcom2","PLOT","ATEMP","APREC","SPREC","PH","LGMS","DIST","TOPO","Gpool2"))
 
 brtresults<-fitbrt_wrapper(inputdat=dat.aug17,modlist=predresp,family="gaussian")
 
