@@ -2,7 +2,8 @@
 
 Marco Girardello (marco.girardello@gmail.com)
 
-R code developed as part of the paper "History and environment shape species pools and community diversity in European beech forests" (Jiménez-Alfaro, B. et. al 2018 https://www.nature.com/articles/s41559-017-0462-6). A copy of the main script (Analyses.R) is shown below. All support functions can be sourced through the main script.
+This README provides an overview of the GitHub repository associated with the paper titled "History and environment shape species pools and community diversity in European beech forests" (Jiménez-Alfaro, B. et. al 2018 https://www.nature.com/articles/s41559-017-0462-6)" A copy of the main script (Analyses.R) is shown below. All support functions can be sourced through the main script.
+
 
 ```r
 # load required libraries
